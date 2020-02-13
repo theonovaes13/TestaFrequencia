@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource class: User
 
-  load_and_authorize_resource
   def show
   end
 
@@ -13,8 +13,17 @@ class UsersController < ApplicationController
   def create
   end
 
-  def update
+  def edit
+    @user = current_user
   end
 
+  def update
+  end
+  private
+
+  def user_params
+    params.require(:user).permit(:matricula )
+
+  end
 end
 

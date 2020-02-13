@@ -16,6 +16,8 @@ class Ability
       elsif user.secretaria?
         can :access, :rails_admin
         can :manage, User, status: :professor
+      elsif user.professor?
+        can :access, User, status: :professor
       end
   end
 
