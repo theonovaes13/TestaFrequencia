@@ -25,6 +25,23 @@ RailsAdmin.config do |config|
 
   config.parent_controller = "ApplicationController"
 
+  config.model("Student") do
+    object_label_method do
+      :nome
+    end
+  end
+
+  config.model("Subject") do
+    object_label_method do
+      :nome
+    end
+  end
+
+  config.model("User") do
+    object_label_method do
+      :nome
+    end
+  end
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -40,4 +57,25 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Subject' do
+    field :user do
+      associated_collection_scope do
+        # bindings[:object] & bindings[:controller] are available, but not in scope's block!
+        user = bindings[:object]
+        Proc.new { |scope|
+          # scoping all Players currently, let's limit them to the team's league
+          # Be sure to limit if there are a lot of Players and order them by position
+          scope = scope.where(status: :professor) if user.present?
+        }
+      end
+    end
+    field :nome
+    field :dias_semana
+    field :hora_inicio
+    field :hora_termino
+    field :capacidade
+
+  end
+
 end
