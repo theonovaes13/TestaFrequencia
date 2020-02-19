@@ -41,6 +41,12 @@ RailsAdmin.config do |config|
     object_label_method do
       :nome
     end
+    edit do
+      field :subjects do
+        visible false
+      end
+      include_all_fields
+    end
   end
   config.actions do
     dashboard                     # mandatory
@@ -64,8 +70,6 @@ RailsAdmin.config do |config|
         # bindings[:object] & bindings[:controller] are available, but not in scope's block!
         user = bindings[:object]
         Proc.new { |scope|
-          # scoping all Players currently, let's limit them to the team's league
-          # Be sure to limit if there are a lot of Players and order them by position
           scope = scope.where(status: :professor) if user.present?
         }
       end

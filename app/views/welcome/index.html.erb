@@ -2,9 +2,19 @@
 
 <div class="login-box">
   <% if current_user.nil? %>
-    <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+    <button class="btn">
+      <%= link_to 'Login', new_user_session_path%>
+    </button>
   <% else %>
-    <%= link_to users_path, class: 'login-button' do %>Go to App<% end %>
-    <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+    <button class="btn">
+      <%= link_to('Acessar seu usuário', users_path, id: 'ulala')%>
+    </button>
+    <button class="btn">
+      <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+    </button>
+
   <% end %>
 </div>
+
+
+<div class="btn"></div>

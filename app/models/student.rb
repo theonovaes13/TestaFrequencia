@@ -1,4 +1,3 @@
 class Student < ApplicationRecord
-  has_many :subscriptions
-
+  has_and_belongs_to_many :subjects, join_table: :subscriptions
 end

@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  has_many :subscriptions
-  has_many :subjects, through: :subscriptions
+  has_many :subjects
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
