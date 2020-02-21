@@ -1,5 +1,43 @@
-<% if @user.professor? do %>
-  <h1>
-    Seja bem-vindo, <%= @user.nome %>
-  </h1>
-<% end %>
+<%  if can? :manage, User%>
+  <div class="header1-box">
+    <h1> Bem-vindo(a), <%= @user.nome %></h1>
+  </div>
+  <div class="content">
+    <h2> Você trabalha aqui como <%= @user.status %></h2>
+    <% if can? :access, :rails_admin %>
+<!--      <%#= link_to 'Página de administração de usuários, cursos e inscrições', rails_admin_path %><br>-->
+      <p>Aguarde, você será redirecionado(a) em breve para a página oficial de administração.</p>
+       Para acessar imediatamente a página, clique <%= link_to "aqui", rails_admin_path %><br><br>
+      <%= javascript_pack_tag 'redirect.js' %>
+    <%end %>
+    <% if @user.professor? %>
+      <h3>Lista de matérias:</h3>
+      <table>
+        <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Dias da semana</th>
+          <th>Hora de início</th>
+          <th>Hora de término</th>
+          <th>Capacidade</th>
+          <th>Alunos inscritos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user.subjects.each do |x|%>
+          <tr>
+            <td><%= x.nome %></td>
+            <td><%= x.dias_semana %></td>
+            <td><%= x.hora_inicio.strftime('%H:%M') %></td>
+            <td><%= x.hora_termino.strftime('%H:%M')%></td>
+            <td><%= x.capacidade %></td>
+            <td><%= x.students.count %></td>
+          </tr>
+          <%end %>
+          </tbody>
+      </table>
+      <%= link_to 'Página Inicial', '/', method: :get %><br>
+      <%= button_to 'Log out', destroy_user_session_path, method: :delete %><br>
+    <%end %>
+  </div>
+<%end %>

@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
+  #   # ...
+  # end
 
   # rescue_from CanCan::AccessDenied do |exception|
   #   respond_to do |format|
@@ -14,7 +17,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def after_sign_in_path_for(resource)
-    users_path
+    user_path(current_user.id)
   end
 
   protected

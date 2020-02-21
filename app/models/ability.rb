@@ -8,17 +8,20 @@ class Ability
     #
       user ||= User.new # guest user (not logged in)
       can :update, User, email: user.email
-      return unless user.admin? || user.secretaria?
       if user.admin?
         can :manage, :all
         can :access, :rails_admin       # only allow admin users to access Rails Admin
         can :manage, :dashboard
       elsif user.secretaria?
         can :access, :rails_admin
+        can :read, :all
         can :manage, User, status: :professor
         can :manage, Student
       elsif user.professor?
-        can :access, User, status: :professor
+        can :read, User, status: :professor
+        can :manage, User, id: user.id
+        can :read, Subject, user_id: user.id
+        can :read, Subscription, user_id: user.id
       end
   end
 

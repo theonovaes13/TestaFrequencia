@@ -1,33 +1,71 @@
 @import "bootstrap";
 
 body{
-  margin: 0;
-  padding: 0;
+  margin: auto;
   text-align: center;
-  background: linear-gradient(black,red) fixed;
+  background: grey fixed;
+  position: relative;
+  left:25%;
 }
 
+
 .welcome-titulo{
-  margin: 20px;
+  margin-bottom: 2.5%;
   margin-top: 5%;
   background: white;
   color: red;
   width: 50%;
   padding:5px;
-  position: relative;
-  left:23.5%;
-  border-top-right-radius: 15px ;
+  //border-top-right-radius: 15px ;
   box-shadow: 4px 4px #666666;
 
 }
 
 .login-box{
-  position: relative;
-  left:25%;
   background: white;
   color: red;
   width: 50%;
   padding:5px;
-  border-bottom-left-radius: 15px;
+  //border-bottom-left-radius: 15px;
   box-shadow: 4px 4px #666666;
+}
+
+.header1-box{
+  background-color: #FFFFFF;
+  width: 50%;
+  margin-top: 10px;
+  border-style: ridge;
+  background-color: #a6bab4;
+  margin-bottom: 30px;
+}
+
+.content{
+  background-color: #a6bab4;
+  width:50%;
+  overflow:auto;
+  border-style: ridge;
+  height: auto;
+}
+
+.table table-bordered{
+  margin: 50px;
+}
+table {
+  margin: 20px 0 20px 0;
+  position:relative;
+  left:5%;
+  width:90%;
+  background-color: #BBBBBB;
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+th {
+  height: 50px;
+  background-color: #999999;
+}
+
+#letra-vermelha{
+  color: #FF0000;
 }

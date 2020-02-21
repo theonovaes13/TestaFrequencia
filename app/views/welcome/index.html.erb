@@ -1,13 +1,15 @@
-<div class="welcome-titulo"><h1>Lorem Ipsum</h1></div>
+<div class="header1-box">
+  <h1>Lorem Ipsum</h1>
+</div>
 
-<div class="login-box">
+<div class="content">
   <% if current_user.nil? %>
     <button class="btn">
       <%= link_to 'Login', new_user_session_path%>
     </button>
   <% else %>
     <button class="btn">
-      <%= link_to('Acessar seu usuário', users_path, id: 'ulala')%>
+      <%= link_to('Acessar seu usuário', user_path(current_user.id), id: 'ulala')%>
     </button>
     <button class="btn">
       <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
@@ -18,3 +20,4 @@
 
 
 <div class="btn"></div>
+

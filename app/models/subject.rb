@@ -1,7 +1,7 @@
 class Subject < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :students, join_table: :subscriptions
-  validate :professor_horario_ocupado, :on => [:create, :update]
+  # validate :professor_horario_ocupado, :on => [:create, :update]
   validate :testa_formato_semana, :on => [:create, :update]
 
   scope :sobresposto, ->(hora_inicio, hora_termino, id) do
